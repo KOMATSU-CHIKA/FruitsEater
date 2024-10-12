@@ -1,10 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using System.Collections;
+using System.Collections.Generic;
+
+using UnityEngine.UI;
+
+
 public class Title : MonoBehaviour
 {
+    [SerializeField]
+    SoundManager soundManager;
+    [SerializeField]
+    AudioClip clip;
+    [SerializeField, Min(0)]
+    float waitTime = 0.5f;
+
+    bool isPlaying = false;
+    WaitForSeconds wait;
+
+    //
+
 
     private bool firstPush = false;
 
@@ -13,6 +30,7 @@ public class Title : MonoBehaviour
         Debug.Log("Press Start!");
         if (!firstPush)
         {
+            soundManager.PlaySe(clip);
             Debug.Log("Go Next Scene!");
             //Ç±Ç±Ç…éüÇÃÉVÅ[ÉìÇ÷Ç¢Ç≠ñΩóﬂÇèëÇ≠ÅB
             SceneManager.LoadScene("SampleScene");
@@ -20,4 +38,5 @@ public class Title : MonoBehaviour
             firstPush = true;
         }
     }
+    
 }
