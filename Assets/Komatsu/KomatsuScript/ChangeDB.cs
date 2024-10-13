@@ -20,7 +20,7 @@ public class ChangeDB : MonoBehaviour
         // スライダーの値が変わったときに呼ばれるメソッドを設定
         BGMSlider.onValueChanged.AddListener(SetBGM);
         SESlider.onValueChanged.AddListener(SetSE);
-        masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
+        //masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
     }
 
     float VolumeToDB(float volume)

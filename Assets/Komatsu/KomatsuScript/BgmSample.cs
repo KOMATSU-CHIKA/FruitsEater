@@ -12,5 +12,4 @@ public class BgmSample : MonoBehaviour
     {
         soundManager.PlayBgm(clip);
     }
-
 }

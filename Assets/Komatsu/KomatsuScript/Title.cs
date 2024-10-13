@@ -1,42 +1,53 @@
-
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine.UI;
-
-
 public class Title : MonoBehaviour
 {
-    [SerializeField]
-    SoundManager soundManager;
-    [SerializeField]
-    AudioClip clip;
-    [SerializeField, Min(0)]
-    float waitTime = 0.5f;
 
-    bool isPlaying = false;
-    WaitForSeconds wait;
-
-    //
-
-
-    private bool firstPush = false;
+    [SerializeField] GameObject option;
+    bool isTuoch = false;
 
     public void PressStart()
     {
         Debug.Log("Press Start!");
-        if (!firstPush)
-        {
-            soundManager.PlaySe(clip);
-            Debug.Log("Go Next Scene!");
-            //ここに次のシーンへいく命令を書く。
-            SceneManager.LoadScene("SampleScene");
-            //
-            firstPush = true;
-        }
+        Initiate.Fade("StageSlectScene", Color.black, 1.0f);
     }
-    
+    public void Option()
+    {
+        if (!isTuoch)
+        {
+            option.SetActive(true);
+        }
+        else
+        {
+            option.SetActive(false);
+        }
+        isTuoch = !isTuoch;
+        
+    }
+
+    private void Update()
+    {
+        endGame();
+    }
+
+    public void endGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;//ゲームプレイ終了
+#else
+    Application.Quit();//ゲームプレイ終了
+#endif
+        }
+
+
+    }
+
 }
+    
+
